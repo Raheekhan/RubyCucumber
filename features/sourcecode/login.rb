@@ -17,6 +17,15 @@ class HomePage
     @driver.find_element(:name, "login").click
   end
 
+  def login_yaml(record)
+    data_record = YAML.load(File.read("/Users/ibrahimkhan/RubymineProjects/RubyCucumber/features/data/record.yaml"))
+    usr_value = data_record["#{record}"]["username"]
+    pwd_value = data_record["#{record}"]["password"]
+    @driver.find_element(:name, "userName").send_keys usr_value
+    @driver.find_element(:name, "password").send_keys pwd_value
+    @driver.find_element(:name, "login").click
+  end
+
   def verify
     @driver.find_element(:name, "findFlights")
   end
